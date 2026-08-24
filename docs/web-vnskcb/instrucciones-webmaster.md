@@ -5,6 +5,29 @@
 
 ---
 
+## Datos del hosting (verificado 24-08-2026)
+
+| Dato | Valor |
+|---|---|
+| Proveedor | **GoDaddy** (plan compartido con cPanel) |
+| Servidor | `p3plzcpnl459193.prod.phx3.secureserver.net` |
+| Raíz web | `public_html` |
+| CMS | Joomla 3.9.25 · PHP 7.4.33 · Apache/LiteSpeed · MariaDB 10.11 |
+| Prefijo de tablas | `riuhb_` |
+
+Verificado desde Joomla → Sistema → Información del sistema. El acceso a la cuenta de
+GoDaddy lo administra el hermano de Stewart (ver `docs/mapeo-clickup-vn-supply.md`).
+
+**Nota sobre las páginas legales:** `terms-and-conditions/` y `privacy-policy/` son carpetas
+estáticas en `public_html`, con un `index.html` cada una. Ganan sobre Joomla porque el
+`.htaccess` no reescribe URLs que corresponden a directorios reales (`RewriteCond
+%{REQUEST_FILENAME} !-d`). Existen además dos artículos de Joomla huérfanos —
+"Privacy Policy" (ID 164, alias `privacy-policy`, vacío) y "Privacy Policy 1" (ID 165) — que
+**nunca se muestran**. Conviene borrarlos para evitar confusiones futuras. No existe
+artículo de Joomla para los términos.
+
+---
+
 ## 1. Links en el footer (en TODAS las páginas del sitio)
 
 Agregar en el pie de página dos enlaces, **visibles para cualquier visitante**, con estos textos exactos en inglés:
