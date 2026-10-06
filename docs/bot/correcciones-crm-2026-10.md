@@ -96,6 +96,14 @@ Orden recomendado de aplicación: **1 → KB → 2/3/5 (prompt) → handover →
   1. Contacts → filtro *Created date < 2026-07-15* (fecha de arranque del bot) **o** la lista de 647 de SP04 **o** contactos con oportunidad en *Proyectos Activos* → seleccionar todos → *Bulk actions* → **Add tag `stop bot`**.
   2. Workflow nuevo (Standard builder, no se puede por CLI porque el trigger es por etapa): **"AP-02 Stop bot clientes"** — Trigger: *Opportunity Stage Changed* → pipeline Ventas, etapa "Estimado enviado" (y cualquier etapa de *Proyectos Activos*) → Action: *Add Contact Tag* `stop bot`. Así todo el que ya es cliente deja de recibir al bot automáticamente.
   3. Capacitación al equipo: cualquier contacto que NO sea lead → ponerle `stop bot` a mano.
+- **Diseño del workflow "AP-02 Stop bot clientes"** (Standard builder, 2 min):
+  - Trigger 1: *Contact Tag Added* → tag `cliente-historico` (importación Clover) — y también `compro` si se usa.
+  - Trigger 2: *Opportunity Status Changed* → status **Won** (cualquier pipeline). Alternativa: *Opportunity Stage Changed* → pipeline Proyectos Activos, cualquier etapa.
+  - Acción 1: *Add Contact Tag* → `stop bot`.
+  - Acción 2: *Conversation AI* → **Off** (si la versión de GHL muestra esa acción; si no, con el tag basta).
+  - NO poner "Remove from all workflows": AP01 corre sobre Proyectos Activos y se cortaría.
+- **Cómo ubicar la base importada** (para el tag masivo): Contacts → *Smart Lists* → filtro *Tags* = `cliente-historico`. Si no existe el tag, filtro *Date Added* = fecha de la importación (Contacts → *Bulk Actions* muestra el historial de importaciones con fecha y cantidad).
+- ⚠️ **Conflicto con SP04 (reactivación de los 647):** el diseño original decía que cuando uno de esos contesta "entra a SP01 (calificación)" = el bot. Con la instrucción de Stiward eso cambia: la respuesta de un cliente existente debe ir a una **persona** (notificación interna + asignar usuario), no al bot. Revisar SP04 antes de lanzar la reactivación. Confirmar con Stiward si los 647 cuentan como "ya eran clientes".
 - Opción B (más estricta, si el cliente la quiere): en el agente, *Bot settings* → "responder solo a contactos con etiqueta" `lead nuevo`, y que LS01 ponga esa etiqueta al crear el contacto. Cambia la lógica de entrada; proponer solo si con `stop bot` no alcanza.
 
 **Prueba.** Con un contacto que tenga `stop bot`, escribir por WhatsApp → el bot no responde. Con un contacto sin etiqueta escribir "cuándo me entregan mi pedido" → el bot deriva sin calificar.
