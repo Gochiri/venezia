@@ -129,7 +129,8 @@ Cliente → BOT (Conversation AI)
 
 - **Prompt final del bot:** en la tarea T3 (`wdx6zepq08`). Nombre del asistente: **Vanne**. Bilingüe, mensajes 2-3 líneas, White Shaker producto estrella, precios nunca por chat.
 - **Delay 6-8s:** se configura en *Timing & Pacing*, no en el prompt.
-- **Base de conocimiento:** `docs/Base_Conocimiento_Bot_Venezia.pdf` (ya subida a la KB del bot).
+- **Base de conocimiento:** `docs/Base_Conocimiento_Bot_Venezia.pdf` — **v2 (oct 2026)**, generada desde `docs/bot/kb-v2.md`; hay que subirla **y asociarla** al agente.
+- **Prompt v2 (oct 2026):** `docs/bot/prompt-v2.md` (= T3). Correcciones por los errores reportados por el cliente: `docs/bot/correcciones-crm-2026-10.md` · tarea T9 `wdx6zf55vf`.
 - **Regla de idioma:** instrucciones al bot en inglés (da igual, el modelo es bilingüe); **example phrases y mensajes al cliente en ES + EN**; valores de campo = token fijo, no se traduce.
 
 ---
@@ -143,6 +144,7 @@ Cliente → BOT (Conversation AI)
 - T6 Handover 🔵 spec nativo (Human Handover 4 escenarios + Stop Bot + Summary Settings) → Oliver configura
 - T8 SYNC 🔵 receta lista → build en Standard builder (3 workflows, uno por campo)
 - T7 Pruebas E2E ⬜ pendiente (se dejó para el final)
+- 🆕 T9 Correcciones oct 2026 (`wdx6zf55vf`) ⬜ — prompt v2 + KB v2 + handover 72 h + tag `stop bot` + enrutamiento de llamadas. Aplicar en UI; ver `docs/bot/correcciones-crm-2026-10.md`.
 
 **Lista 03 · Pipeline:**
 - SP01 Calificación ✅ (blueprint completo con bifurcación con/sin medidas y mensajes bilingües; con/sin medidas SOLO aplica a Cliente final)
